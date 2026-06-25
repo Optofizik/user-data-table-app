@@ -91,24 +91,6 @@ Layering rules:
 The users feature keeps state in a single Signal-based store. Components render
 readonly signals and emit user intent back to the store.
 
-```mermaid
-flowchart TD
-  Toolbar["UsersToolbarComponent<br/>search and filters"] -->|setSearch / setActiveFilter / setAgeFilter| Store["UsersStore<br/>private writable signals"]
-  Table["UsersTableComponent<br/>sort and infinite scroll"] -->|setSort / loadMore| Store
-  Page["UsersPageComponent"] -->|load on init| Store
-  Store -->|HttpClient request| Api["UsersApiService<br/>data layer"]
-  Api -->|mock JSON mapped to User[]| Store
-  Store --> Search["debouncedSearchQuery<br/>250 ms"]
-  Search --> Filtered["filteredUsers computed"]
-  Store --> Filtered
-  Filtered --> Sorted["sortedUsers computed"]
-  Sorted --> Visible["visibleUsers computed"]
-  Visible --> Page
-  Store --> Page
-  Page --> Toolbar
-  Page --> Table
-```
-
 State rules:
 
 - Writable signals are private inside `UsersStore`.
