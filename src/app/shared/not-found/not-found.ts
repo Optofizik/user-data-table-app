@@ -5,12 +5,6 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 
 /**
  * 404 page rendered by the `**` wildcard route.
- *
- * Note the import convention: NG-ZORRO modules are imported directly into the
- * standalone component that uses them (`NzResultModule`, `NzButtonModule`).
- * There is intentionally no shared `NgZorroModule` barrel — each component
- * declares only the NG-ZORRO surface it actually needs, which keeps imports
- * explicit and tree-shaking effective.
  */
 @Component({
   selector: 'app-not-found',

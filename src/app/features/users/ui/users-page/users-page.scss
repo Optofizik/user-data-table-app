@@ -1,0 +1,17 @@
+ .users-page {
+     display: block;
+ }
+
+ .users-page__title {
+     margin: 0 0 var(--app-spacing-lg);
+     font-size: var(--app-font-size-heading, 20px);
+     font-weight: 600;
+ }
+
+ .users-page__error {
+     margin-bottom: var(--app-spacing-md);
+ }
+
+ .users-page__table-placeholder {
+     min-height: 200px;
+ }

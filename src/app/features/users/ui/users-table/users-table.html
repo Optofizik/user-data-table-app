@@ -1,0 +1,60 @@
+@if (totalCount() === 0 && !loading()) {
+<nz-empty class="users-table__empty" />
+} @else {
+<nz-table [nzData]="users()" [nzFrontPagination]="false" [nzShowPagination]="false" [nzLoading]="loading()">
+    <thead>
+        <tr>
+            @for (column of sortableColumns; track column.field) {
+            <th class="users-table__th users-table__th--sortable" role="button" tabindex="0"
+                [attr.aria-label]="sortLabelFor(column.field, column.label)"
+                [attr.aria-sort]="ariaSortFor(column.field)" (click)="sortChange.emit(column.field)"
+                (keydown.enter)="sortChange.emit(column.field)" (keydown.space)="sortByKeyboard($event, column.field)">
+                <span>{{ column.label }}</span>
+                @if (directionFor(column.field); as direction) {
+                <nz-icon [nzType]="direction === 'asc' ? 'sort-ascending' : 'sort-descending'" />
+                }
+            </th>
+            }
+            <th>Phone</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (user of users(); track user.id) {
+        <tr>
+            <td>
+                <span [innerHTML]="user.firstName | highlight: searchQuery()"></span>
+            </td>
+            <td>
+                <span [innerHTML]="user.lastName | highlight: searchQuery()"></span>
+            </td>
+            <td>
+                <span [innerHTML]="user.dob | formatDate: 'dd MMMM yyyy' | highlight: searchQuery()"></span>
+            </td>
+            <td>
+                <span [innerHTML]="user.phone | highlight: searchQuery()"></span>
+            </td>
+            <td>
+                <nz-tag [nzColor]="user.active ? 'green' : 'red'">
+                    {{ user.active ? 'Active' : 'Inactive' }}
+                </nz-tag>
+            </td>
+        </tr>
+        }
+    </tbody>
+</nz-table>
+
+<div class="users-table__sentinel" appInfiniteScroll [disabled]="!hasMore() || loading()" (scrolled)="loadMore.emit()">
+    @if (loading() || hasMore()) {
+    <nz-spin nzSimple />
+    }
+</div>
+
+<nz-float-button-top [nzVisibilityHeight]="240" [nzTemplate]="backToTopTpl" />
+
+<ng-template #backToTopTpl>
+    <button class="users-table__back-top" type="button" aria-label="Scroll to top">
+        Top
+    </button>
+</ng-template>
+}

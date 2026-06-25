@@ -1,0 +1,16 @@
+.users-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--app-spacing-md);
+    margin-bottom: var(--app-spacing-md);
+}
+
+.users-toolbar__search {
+    flex: 1 1 240px;
+    max-width: 360px;
+}
+
+.users-toolbar__filter {
+    min-width: 140px;
+}

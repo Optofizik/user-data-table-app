@@ -1,0 +1,42 @@
+ <section class="users-page">
+      <h1 class="users-page__title">Users grid</h1>
+
+      @if (store.error(); as error) {
+        <nz-alert
+          class="users-page__error"
+          nzType="error"
+          [nzMessage]="error"
+          nzShowIcon
+        />
+      }
+
+      @if (store.loading()) {
+        <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 8 }" />
+      } @else {
+        <app-users-toolbar
+          [searchQuery]="store.searchQuery()"
+          [activeFilter]="store.activeFilter()"
+          [ageFilter]="store.ageFilter()"
+          (searchQueryChange)="store.setSearch($event)"
+          (activeFilterChange)="store.setActiveFilter($event)"
+          (ageFilterChange)="store.setAgeFilter($event)"
+        />
+
+        @defer (on idle) {
+          <app-users-table
+            [users]="store.visibleUsers()"
+            [sort]="store.sort()"
+            [searchQuery]="store.searchQuery()"
+            [totalCount]="store.totalCount()"
+            [loading]="store.loading()"
+            [hasMore]="store.hasMore()"
+            (sortChange)="store.setSort($event)"
+            (loadMore)="store.loadMore()"
+          />
+        } @placeholder {
+          <div class="users-page__table-placeholder"></div>
+        } @loading (minimum 200ms) {
+          <nz-spin nzSimple />
+        }
+      }
+</section>
