@@ -1,1 +1,142 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================================================
+ * Global styles & theme tokens
+ *
+ * NG-ZORRO's base styles are loaded from the CSS-variable build
+ * (`ng-zorro-antd.variable.min.css`, see angular.json). That build exposes its
+ * theme as CSS custom properties (`--ant-*`), so the whole library can be
+ * re-themed at runtime from this file alone — no Less compilation required.
+ *
+ * Layering:
+ *   1. `$app-*` Sass tokens  -> the single source of truth, usable in component
+ *      `.scss` files via `@use 'styles' as tokens;`.
+ *   2. `--app-*` CSS variables -> the same tokens exposed to the DOM/runtime.
+ *   3. `--ant-*` overrides    -> map our tokens onto NG-ZORRO's theme.
+ * ========================================================================= */
+
+/* -------------------------------------------------------------------------
+ * 1. Design tokens (Sass) — import these in components with `@use`.
+ * ------------------------------------------------------------------------- */
+
+// Colors
+$app-color-primary: #1677ff;
+$app-color-primary-hover: #4096ff;
+$app-color-primary-active: #0958d9;
+$app-color-success: #52c41a;
+$app-color-warning: #faad14;
+$app-color-error: #ff4d4f;
+$app-color-info: #1677ff;
+
+$app-color-text: rgba(0, 0, 0, 0.88);
+$app-color-text-secondary: rgba(0, 0, 0, 0.65);
+$app-color-text-tertiary: rgba(0, 0, 0, 0.45);
+$app-color-border: #d9d9d9;
+$app-color-bg: #ffffff;
+$app-color-bg-layout: #f5f5f5;
+
+// Spacing scale (4px base)
+$app-spacing-xs: 4px;
+$app-spacing-sm: 8px;
+$app-spacing-md: 16px;
+$app-spacing-lg: 24px;
+$app-spacing-xl: 32px;
+$app-spacing-xxl: 48px;
+
+// Typography
+$app-font-family:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$app-font-family-code:
+  'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+$app-font-size-sm: 12px;
+$app-font-size-base: 14px;
+$app-font-size-lg: 16px;
+$app-font-size-heading: 20px;
+
+$app-line-height-base: 1.5715;
+$app-font-weight-regular: 400;
+$app-font-weight-medium: 500;
+$app-font-weight-bold: 600;
+
+// Radii & elevation
+$app-border-radius-sm: 4px;
+$app-border-radius-base: 6px;
+$app-border-radius-lg: 8px;
+$app-box-shadow-card: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
+  0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+
+/* -------------------------------------------------------------------------
+ * 2. Expose tokens as CSS custom properties for runtime/template use.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --app-color-primary: #{$app-color-primary};
+  --app-color-success: #{$app-color-success};
+  --app-color-warning: #{$app-color-warning};
+  --app-color-error: #{$app-color-error};
+
+  --app-color-text: #{$app-color-text};
+  --app-color-text-secondary: #{$app-color-text-secondary};
+  --app-color-text-tertiary: #{$app-color-text-tertiary};
+  --app-color-border: #{$app-color-border};
+  --app-color-bg: #{$app-color-bg};
+  --app-color-bg-layout: #{$app-color-bg-layout};
+
+  --app-spacing-xs: #{$app-spacing-xs};
+  --app-spacing-sm: #{$app-spacing-sm};
+  --app-spacing-md: #{$app-spacing-md};
+  --app-spacing-lg: #{$app-spacing-lg};
+  --app-spacing-xl: #{$app-spacing-xl};
+  --app-spacing-xxl: #{$app-spacing-xxl};
+
+  --app-font-family: #{$app-font-family};
+  --app-font-family-code: #{$app-font-family-code};
+  --app-font-size-base: #{$app-font-size-base};
+  --app-border-radius-base: #{$app-border-radius-base};
+
+  /* ---------------------------------------------------------------------
+   * 3. Map our tokens onto NG-ZORRO's theme (CSS-variable build).
+   * --------------------------------------------------------------------- */
+  --ant-primary-color: #{$app-color-primary};
+  --ant-primary-color-hover: #{$app-color-primary-hover};
+  --ant-primary-color-active: #{$app-color-primary-active};
+  --ant-success-color: #{$app-color-success};
+  --ant-warning-color: #{$app-color-warning};
+  --ant-error-color: #{$app-color-error};
+  --ant-info-color: #{$app-color-info};
+}
+
+/* -------------------------------------------------------------------------
+ * Base / reset
+ * ------------------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $app-font-family;
+  font-size: $app-font-size-base;
+  line-height: $app-line-height-base;
+  color: $app-color-text;
+  background-color: $app-color-bg-layout;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Search-term highlighting (emitted by the `highlight` pipe via [innerHTML],
+ * so it lives globally — component-scoped styles can't reach injected markup). */
+mark {
+  padding: 0;
+  background-color: #fff1b8; // ant-design gold-2
+  color: inherit;
+  border-radius: 2px;
+}
