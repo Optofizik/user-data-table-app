@@ -1,6 +1,19 @@
 # UsersTable
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.17.
+## 🛠 Environment Requirements
+
+For proper operation, development, and building of this project, your local environment must meet the following minimum requirements:
+
+- **Node.js**: `v22.x` (LTS) or newer.
+
+- **Package Manager**:
+  - `npm` version `>= 10.x`
+
+- **Angular CLI**: `v21.2.17`
+
+  You can install it globally using the command:
+  ```bash
+  npm install -g @angular/cli@21.2.17
 
 ## Scripts
 
