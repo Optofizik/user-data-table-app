@@ -1,6 +1,19 @@
-# UsersTable
+# Users Data Table app
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.17.
+## 🛠 Environment Requirements
+
+For proper operation, development, and building of this project, your local environment must meet the following minimum requirements:
+
+- **Node.js**: `v22.x` (LTS) or newer.
+
+- **Package Manager**:
+  - `npm` version `>= 10.x`
+
+- **Angular CLI**: `v21.2.17`
+
+  You can install it globally using the command:
+  ```bash
+  npm install -g @angular/cli@21.2.17
 
 ## Scripts
 
@@ -11,48 +24,6 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 | `npm run watch` | Builds continuously with the development configuration. |
 | `npm test` | Runs Angular unit tests through the configured Vitest builder. |
 | `npm run ng -- <args>` | Runs Angular CLI commands through the local project version. |
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
 
 ## Application architecture
 
@@ -202,17 +173,3 @@ Save the output to `src/assets/mocks/users.json`. The committed file was produce
 with an equivalent local generator that mirrors this template (GUID `id`,
 `dob` formatted `yyyy-MM-dd` between 1950 and 2005, US-formatted `phone`,
 boolean `active`).
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
