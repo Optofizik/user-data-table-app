@@ -1,0 +1,44 @@
+ .app-layout {
+      min-height: 100vh;
+    }
+
+    .app-layout__header {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      padding-inline: var(--app-spacing-lg);
+      background: var(--app-color-bg);
+      border-bottom: 1px solid var(--app-color-border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .app-layout__body {
+      align-items: flex-start;
+    }
+
+    .app-layout__sider {
+      background: var(--app-color-bg);
+      border-right: 1px solid var(--app-color-border);
+      padding-top: var(--app-spacing-sm);
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      z-index: 5;
+      width: 200px;
+    }
+
+    .app-layout__menu {
+      border-inline-end: 0;
+    }
+
+    .app-layout__brand {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--app-color-text);
+    }
+
+    .app-layout__content {
+      padding: var(--app-spacing-lg);
+    }

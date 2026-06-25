@@ -1,0 +1,42 @@
+<nz-layout class="app-layout">
+      <nz-header class="app-layout__header">
+        <a routerLink="/">
+          <span class="app-layout__brand">Users management app</span>
+        </a>
+      </nz-header>
+
+      <nz-layout class="app-layout__body">
+        <nz-sider
+          nzWidth="200"
+          class="app-layout__sider"
+        >
+          <ul
+            nz-menu
+            nzMode="inline"
+            class="app-layout__menu"
+          >
+            <li
+              nz-menu-item
+              routerLink="/"
+              routerLinkActive="ant-menu-item-selected"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <nz-icon nzType="home" />
+              <span>Home</span>
+            </li>
+            <li
+              nz-menu-item
+              routerLink="/grid"
+              routerLinkActive="ant-menu-item-selected"
+            >
+              <nz-icon nzType="team" />
+              <span>Grid</span>
+            </li>
+          </ul>
+        </nz-sider>
+
+        <nz-content class="app-layout__content">
+          <router-outlet />
+        </nz-content>
+      </nz-layout>
+    </nz-layout>
