@@ -123,9 +123,7 @@ export class UsersStore {
       return users;
     }
     const direction = sort.direction === 'desc' ? -1 : 1;
-    return [...users].sort(
-      (a, b) => direction * a[sort.field].localeCompare(b[sort.field]),
-    );
+    return [...users].sort((a, b) => direction * compareUsersForSort(a, b, sort));
   });
 
   /** The slice of {@link sortedUsers} currently revealed by infinite scroll. */
@@ -253,4 +251,19 @@ function matchesAge(user: User, filter: AgeFilter): boolean {
   }
   const age = calculateAge(user.dob);
   return filter === 'under18' ? age < ADULT_AGE : age >= ADULT_AGE;
+}
+
+/** Comparison function used by store sorting; `dob` is sorted as an actual date. */
+function compareUsersForSort(a: User, b: User, sort: UserSort): number {
+  if (sort.field === 'dob') {
+    return toDateNumber(a.dob) - toDateNumber(b.dob);
+  }
+
+  return a[sort.field].localeCompare(b[sort.field]);
+}
+
+/** Converts yyyy-MM-dd into a stable UTC timestamp for sorting comparisons. */
+function toDateNumber(dob: string): number {
+  const [year, month, day] = dob.split('-').map(Number);
+  return Date.UTC(year, month - 1, day);
 }

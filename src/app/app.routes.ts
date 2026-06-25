@@ -3,11 +3,11 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'users',
-    pathMatch: 'full',
+    loadComponent: () => import('./shared/home').then((m) => m.HomeComponent),
+    title: 'Home',
   },
   {
-    path: 'users',
+    path: 'grid',
     loadChildren: () =>
       import('./features/users/users.routes').then((m) => m.usersRoutes),
   },

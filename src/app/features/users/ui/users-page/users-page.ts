@@ -29,7 +29,7 @@ import { UsersToolbarComponent } from '../users-toolbar/users-toolbar';
   ],
   template: `
     <section class="users-page">
-      <h1 class="users-page__title">Users</h1>
+      <h1 class="users-page__title">Users grid</h1>
 
       @if (store.error(); as error) {
         <nz-alert

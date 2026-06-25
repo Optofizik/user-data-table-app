@@ -23,8 +23,8 @@ import { NzResultModule } from 'ng-zorro-antd/result';
       nzSubTitle="Sorry, the page you visited does not exist."
     >
       <div nz-result-extra>
-        <a routerLink="/users">
-          <button nz-button nzType="primary">Back to Users</button>
+        <a routerLink="/grid">
+          <button nz-button nzType="primary">Back to Grid</button>
         </a>
       </div>
     </nz-result>

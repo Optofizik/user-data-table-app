@@ -5,6 +5,7 @@ import {
   output,
 } from '@angular/core';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFloatButtonModule } from 'ng-zorro-antd/float-button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -32,6 +33,7 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
     FormatDatePipe,
     HighlightPipe,
     InfiniteScrollDirective,
+    NzFloatButtonModule,
     NzEmptyModule,
     NzIconModule,
     NzSpinModule,
@@ -84,7 +86,7 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
             </td>
             <td>
               <span
-                [innerHTML]="user.dob | formatDate | highlight: searchQuery()"
+                [innerHTML]="user.dob | formatDate: 'dd MMMM yyyy' | highlight: searchQuery()"
               ></span>
             </td>
             <td>
@@ -110,6 +112,14 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
           <nz-spin nzSimple />
         }
       </div>
+
+      <nz-float-button-top [nzVisibilityHeight]="240" [nzTemplate]="backToTopTpl" />
+
+      <ng-template #backToTopTpl>
+        <button class="users-table__back-top" type="button" aria-label="Scroll to top">
+          Top
+        </button>
+      </ng-template>
     }
   `,
   styles: `
@@ -125,6 +135,19 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
       justify-content: center;
       min-height: 48px;
       padding: var(--app-spacing-md) 0;
+    }
+
+    .users-table__back-top {
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--app-color-primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
     }
   `,
 })
