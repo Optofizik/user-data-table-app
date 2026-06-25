@@ -1,4 +1,4 @@
-# UsersTable
+# Users Data Table app
 
 ## 🛠 Environment Requirements
 
