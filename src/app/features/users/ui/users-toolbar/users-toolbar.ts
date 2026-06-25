@@ -8,11 +8,6 @@ import { ActiveFilter, AgeFilter } from '../../domain/users-filters.model';
 
 /**
  * Presentational toolbar with the users search box and filter dropdowns.
- *
- * Fully controlled and stateless: it renders the values passed via inputs and
- * emits user changes through outputs. The smart parent feeds the store's
- * signals in and routes the emitted changes back into the store (which
- * debounces the search internally) — so this component holds no state itself.
  */
 @Component({
   selector: 'app-users-toolbar',

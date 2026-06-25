@@ -22,11 +22,6 @@ import {
 
 /**
  * Icons explicitly registered for the application.
- *
- * NG-ZORRO does not ship every icon by default; only the ones listed here are
- * bundled. Keeping a curated set (instead of registering all icons) keeps the
- * initial bundle within the configured production budget. Add new icons here as
- * features need them.
  */
 const appIcons = [
   DeleteOutline,

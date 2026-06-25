@@ -20,11 +20,6 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
 
 /**
  * Presentational users grid.
- *
- * Renders the rows it is given via NG-ZORRO's `nz-table` with front pagination
- * disabled (the store owns paging/filtering/sorting). It is fully controlled:
- * sorting and "load more" intents are emitted as outputs, and search-term
- * highlighting is driven by the `searchQuery` input.
  */
 @Component({
   selector: 'app-users-table',
@@ -60,8 +55,10 @@ export class UsersTableComponent {
   /** Requests the next page of rows. */
   readonly loadMore = output<void>();
 
+  readonly DOB_FORMAT = 'dd MMMM yyyy';
+
   /** Sortable columns, in render order. */
-  protected readonly sortableColumns: ReadonlyArray<{
+  readonly sortableColumns: ReadonlyArray<{
     field: SortField;
     label: string;
   }> = [
@@ -71,12 +68,12 @@ export class UsersTableComponent {
   ];
 
   /** Sort direction currently applied to `field`, or `null` if unsorted. */
-  protected directionFor(field: SortField): SortDirection | null {
+  directionFor(field: SortField): SortDirection | null {
     const sort = this.sort();
     return sort?.field === field ? sort.direction : null;
   }
 
-  protected ariaSortFor(field: SortField): 'ascending' | 'descending' | 'none' {
+  ariaSortFor(field: SortField): 'ascending' | 'descending' | 'none' {
     const direction = this.directionFor(field);
 
     if (direction === 'asc') {
@@ -90,7 +87,7 @@ export class UsersTableComponent {
     return 'none';
   }
 
-  protected sortLabelFor(field: SortField, label: string): string {
+  sortLabelFor(field: SortField, label: string): string {
     const direction = this.directionFor(field);
 
     if (direction === 'asc') {
@@ -104,7 +101,7 @@ export class UsersTableComponent {
     return `${label}, not sorted. Activate to sort ascending.`;
   }
 
-  protected sortByKeyboard(event: Event, field: SortField): void {
+  sortByKeyboard(event: Event, field: SortField): void {
     event.preventDefault();
     this.sortChange.emit(field);
   }

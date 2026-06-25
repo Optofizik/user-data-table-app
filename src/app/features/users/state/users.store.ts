@@ -37,25 +37,6 @@ interface SearchableUser extends User {
 
 /**
  * Signal-based store for the users feature.
- *
- * Holds the full dataset once loaded and derives every view (filter, sort,
- * pagination) through memoized `computed` selectors. State is held exclusively
- * in signals — RxJS is used only to consume the one-shot data-layer fetch and
- * to debounce the search input.
- *
- * Performance characteristics (see also {@link filteredUsers}):
- * - Search is debounced ({@link SEARCH_DEBOUNCE_MS}ms), so filtering runs at
- *   most once per pause in typing rather than on every keystroke.
- * - The search term is normalized once per change in a `computed`, and each
- *   user carries a precomputed lowercased `searchText`, so a keystroke costs
- *   one `includes` per row with no repeated allocation.
- * - `computed` selectors are memoized: each recomputes only when a signal it
- *   reads actually changes, and the chain stops early when an upstream result
- *   is unchanged.
- * - `visibleUsers` exposes only the paginated slice, keeping the rendered DOM
- *   small regardless of dataset size.
- * - Combined with `OnPush` components, signal reads schedule change detection
- *   precisely where data changed — no zone-wide dirty checking.
  */
 @Injectable({ providedIn: 'root' })
 export class UsersStore {
@@ -140,10 +121,6 @@ export class UsersStore {
   readonly totalCount = computed(() => this.sortedUsers().length);
 
   constructor() {
-    // Whenever the query shape changes, restart pagination from the first page.
-    // Tracks the *debounced* search (via normalizedSearch) so the reset aligns
-    // with when results actually change. `untracked` keeps pageSize/loadedCount
-    // out of this effect's dependencies.
     effect(() => {
       this.normalizedSearch();
       this._activeFilter();

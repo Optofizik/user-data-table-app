@@ -29,7 +29,7 @@
                 <span [innerHTML]="user.lastName | highlight: searchQuery()"></span>
             </td>
             <td>
-                <span [innerHTML]="user.dob | formatDate: 'dd MMMM yyyy' | highlight: searchQuery()"></span>
+                <span [innerHTML]="user.dob | formatDate: DOB_FORMAT | highlight: searchQuery()"></span>
             </td>
             <td>
                 <span [innerHTML]="user.phone | highlight: searchQuery()"></span>

@@ -9,10 +9,6 @@ export interface UserSort {
 
 /**
  * Describes how a users collection should be filtered and sorted.
- *
- * Lives in the domain because it is a transport-agnostic description of a query
- * over `User` entities, shared by both the `data` and `state` layers. All
- * members are optional; an empty criteria matches every user in source order.
  */
 export interface UsersQueryCriteria {
   /** Case-insensitive free-text match across name and phone. */
